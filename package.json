@@ -1,0 +1,24 @@
+{
+  "name": "csv-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec/utils.spec.js",
+    "test-utils": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenRut/csv-converter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenRut/csv-converter/issues"
+  },
+  "homepage": "https://github.com/BenRut/csv-converter#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  }
+}
