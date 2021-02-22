@@ -1,14 +1,28 @@
+const fs = require('fs');
+
 const formatLine = str => {
     const dataArray = str.split(" ");
-    const firstName = dataArray[1];
+    const firstName = dataArray[dataArray.length-2]; 
     const surname = dataArray[0];
-    const fullName = `${firstName} ${surname}`;
+    const regex = /\(n[eé]e ([^\s]+)\)/g;
+    let maidenName;
+    let fullName;
+
+    if (regex.test(str)) {
+        maidenName = str.match(regex)[0];
+        str = str.replace(regex, '');
+        fullName = `${firstName} ${surname} ${maidenName},`;
+    } else {
+        fullName = `${firstName} ${surname}`
+    }
+  
     const emailAddressWithBrackets = dataArray[dataArray.length-1];
     const emailAddressArr = emailAddressWithBrackets.split("");
     emailAddressArr.pop();
     emailAddressArr.shift();
     const emailAddress = emailAddressArr.join("");
-    return `${fullName} ${emailAddress}`;
+    
+    return `${fullName}${emailAddress}`;
 
 };
 
@@ -33,13 +47,20 @@ const formatsData = str => {
             return formatLine(contact);
         }
     })
-    const result = formattedLines.join("\n");
-    console.log(result);
+    const result = "Name, Email Address\n" + formattedLines.join("\n");
     return result;
 };
+
+const exportDataToCsv = (fileName, data) => {
+    fs.writeFile(`${fileName}.csv`, formatsData(data), (err) => {
+        if (err) throw err;
+        console.log('CSV saved!');
+    });
+}
 
 module.exports = {
     formatLine,
     convertSemicolonToNewLine,
-    formatsData
+    formatsData,
+    exportDataToCsv
 }
