@@ -36,7 +36,7 @@ const convertSemicolonToNewLine = str => {
     return filteredArr.join("");
 };
 
-const formatsData = str => {
+const formatData = str => {
     const contacts = str.split(";")
     const formattedLines = contacts.map((contact)=> {
         if (contact[0] === " "){
@@ -52,7 +52,7 @@ const formatsData = str => {
 };
 
 const exportDataToCsv = (fileName, data) => {
-    fs.writeFile(`${fileName}.csv`, formatsData(data), (err) => {
+    fs.writeFile(`${fileName}.csv`, formatData(data), (err) => {
         if (err) throw err;
         console.log('CSV saved!');
     });
@@ -61,6 +61,6 @@ const exportDataToCsv = (fileName, data) => {
 module.exports = {
     formatLine,
     convertSemicolonToNewLine,
-    formatsData,
+    formatData,
     exportDataToCsv
 }

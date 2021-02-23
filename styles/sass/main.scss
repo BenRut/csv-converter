@@ -1,0 +1,108 @@
+body {
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+h1 {
+    
+    margin-bottom: 0;
+    letter-spacing: 0.2em;
+}
+h2 {
+    letter-spacing: 0.2em;
+    margin-top: 0;
+    font-weight: 200;
+}
+input:focus, textarea:focus, select:focus button:focus{
+    outline: none;
+}
+#banner {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    color: #fff;
+    background: #000;
+    padding-left: 100px;
+}
+.title {
+    color: #000;
+    font-size: 25px;
+    font-family: sans-serif;
+    margin-left: 20px;
+    letter-spacing: 0.2em;
+}
+
+label {
+    margin-left: 20px;
+    margin-top: 20px;
+
+    letter-spacing: 0.2em;
+}
+
+textarea {
+    margin: 20px;
+    margin-top:0px;
+    border: solid #000 2px;
+    font-family: monospace;
+    &:focus {
+        outline: none;
+    }
+  
+}
+
+input {
+    width: 200px;
+    margin-top: 0;
+    border: none;
+    border-bottom: solid #000 2px;
+    &:focus {
+        outline: none;
+    }
+}
+
+#convert {
+    transition: all 0.5s;
+    margin: 20px;
+    padding: 15px;
+    border: solid #000 2px;
+    letter-spacing: 0.2em;
+    font-family: sans-serif Arial;
+    color: black;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+    -webkit-tap-highlight-color: transparent;
+    background: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    -webkit-box-shadow: 10px 10px 0px 2px #000;
+    -moz-box-shadow: 10px 10px 0px 2px #000;
+    box-shadow: 10px 10px 0px 2px #000;
+    &:hover {
+        box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+    }
+    &:active {
+        box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 5px 5px 0px 0px rgba(0,0,0,1);
+        background: #000;
+        border: #fff;
+        color: #fff;
+    }
+}
+.container {
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container form {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 375px;
+}

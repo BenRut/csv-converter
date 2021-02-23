@@ -3,7 +3,7 @@ const { it } = require('mocha');
 const {
   formatLine,
   convertSemicolonToNewLine,
-  formatsData,
+  formatData,
   exportDataToCsv
 } = require("../utils");
 
@@ -46,22 +46,22 @@ describe('convertSemicolonToNewLine', () => {
     });
 });
 
-describe('formatsData', () => {
+describe('formatData', () => {
     it('should return one formatted contact on one line', () => {
         const input = 'Adams, Stuart <Stuart.Adams@eu.jll.com>'
-        const output = formatsData(input);
+        const output = formatData(input);
         expect(output.split("\n")[1]).to.equal('Stuart Adams,Stuart.Adams@eu.jll.com');
     });
     it('should return two formatted contacts on two lines', () => {
         const input = 'Adams, Stuart <Stuart.Adams@eu.jll.com>; Afsar, Zeeshan <Zeeshan.Afsar@eu.jll.com>'
-        const output = formatsData(input);
+        const output = formatData(input);
         const outputArr = output.split("\n");
         outputArr.shift();
         expect(outputArr.join("\n")).to.equal('Stuart Adams,Stuart.Adams@eu.jll.com\nZeeshan Afsar,Zeeshan.Afsar@eu.jll.com');
     });
     it('should return any mutiple of contacts on an equal number of lines', () => {
         const input = 'Adams, Stuart <Stuart.Adams@eu.jll.com>; Afsar, Zeeshan <Zeeshan.Afsar@eu.jll.com>; Agnew, Jane <Jane.Agnew@eu.jll.com>; Ambrose, Laura <Laura.Ambrose@eu.jll.com>; Anderson, Tamryn <Tamryn.Anderson@eu.jll.com>; Andrew, Rachel <Rachel.Andrew@eu.jll.com>; Arnold, Christine <Christine.Arnold@eu.jll.com>; Asher, Yafeth <Yafeth.Asher@eu.jll.com>'
-        const output = formatsData(input);
+        const output = formatData(input);
         const outputArr = output.split("\n");
         outputArr.shift();
         expect(outputArr.join("\n")).to.equal('Stuart Adams,Stuart.Adams@eu.jll.com\nZeeshan Afsar,Zeeshan.Afsar@eu.jll.com\nJane Agnew,Jane.Agnew@eu.jll.com\nLaura Ambrose,Laura.Ambrose@eu.jll.com\nTamryn Anderson,Tamryn.Anderson@eu.jll.com\nRachel Andrew,Rachel.Andrew@eu.jll.com\nChristine Arnold,Christine.Arnold@eu.jll.com\nYafeth Asher,Yafeth.Asher@eu.jll.com');
