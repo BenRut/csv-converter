@@ -7,7 +7,7 @@ const {
   exportDataToCsv
 } = require("../utils");
 
-describe('formatLine', () => {
+describe.only('formatLine', () => {
     it('should return a string when passed a string', () => {
         const output = formatLine("");
         expect(output).to.be.a('string');
@@ -27,6 +27,14 @@ describe('formatLine', () => {
         const input = 'Harker (née Murray), Mina <Mina.Harker@eu.jll.com>'
         const output = formatLine(input);
         expect(output).to.equal('Mina Harker (née Murray),Mina.Harker@eu.jll.com');
+    });
+    it('should format lines containing any number of first or second names', () => {
+        const input1 = 'Borges, Jorge Luis <Jorge.Borges@eu.jll.com>';
+        const output1 = formatLine(input1);
+        expect(output1).to.equal('Jorge Luis Borges,Jorge.Borges@eu.jll.com');
+        const input2 = 'García Lopez, Jose <Jose.GarcíaLopez@bewonder.co.uk>';
+        const output2 = formatLine(input2);
+        expect(output2).to.equal('Jose García Lopez,Jose.GarcíaLopez@bewonder.co.uk');
     });
 });
 

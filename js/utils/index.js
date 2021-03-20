@@ -1,29 +1,22 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const formatLine = str => {
-    const dataArray = str.split(" ");
-    const firstName = dataArray[dataArray.length-2]; 
-    const surname = dataArray[0];
-    const regex = /\(n[eé]e ([^\s]+)\)/g;
-    let maidenName;
-    let fullName;
-
-    if (regex.test(str)) {
-        maidenName = str.match(regex)[0];
-        str = str.replace(regex, '');
-        fullName = `${firstName} ${surname} ${maidenName},`;
-    } else {
-        fullName = `${firstName} ${surname}`
-    }
-  
-    const emailAddressWithBrackets = dataArray[dataArray.length-1];
+    if (str === "") return str;
+    const emailAddressWithBrackets = str.match(/<.*>/)[0];
+    const unformattedName = str.replace(emailAddressWithBrackets, "");
+    const dataArray = unformattedName.split(",");
+    const unformattedFirstNames = dataArray[1]; 
+    const surnames = dataArray[0];
+    const firstNamesArr = unformattedFirstNames.split("");
+    firstNamesArr.pop();
+    firstNamesArr.shift();
+    const firstNames = firstNamesArr.join("");
+    const fullName = `${firstNames} ${surnames}`;
     const emailAddressArr = emailAddressWithBrackets.split("");
     emailAddressArr.pop();
     emailAddressArr.shift();
     const emailAddress = emailAddressArr.join("");
-    
-    return `${fullName}${emailAddress}`;
-
+    return `${fullName},${emailAddress}`;
 };
 
 const convertSemicolonToNewLine = str => {

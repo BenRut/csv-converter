@@ -7,7 +7,7 @@
     "create-file": "create-file.js"
   },
   "scripts": {
-    "test": "mocha spec/utils.spec.js",
+    "test": "mocha js/spec/utils.spec.js",
     "test-utils": "",
     "create-file": "node create-file.js"
   },
