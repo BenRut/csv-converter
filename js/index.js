@@ -70,12 +70,15 @@ const formatData = str => {
     return result;
 };
 
-document.getElementById("convert").addEventListener("click", (event) => {
+document.getElementById('convert').addEventListener('click', (event) => {
     event.preventDefault();
 
-    const string = document.getElementById("distribution-list").value;
-    const title = document.getElementById("title").value;
+    const string = document.getElementById('distribution-list').value;
+    const title = document.getElementById('title').value;
 
+    if (title === '') {
+        document.getElementById('title-error').classList.add("visible");
+    } 
     if (validateString(string)) {
         const formattedData = formatData(string);
         const blob = new Blob([formattedData], { type: 'csv' });
@@ -85,8 +88,22 @@ document.getElementById("convert").addEventListener("click", (event) => {
 	    link.href = url;
 	    link.click();
     } else {
-        console.log("invalid format");
+        document.getElementById('data-error').classList.add("visible");
     }
   });
+
+  document.getElementById('title').addEventListener('keyup', (event) => {
+    const title = document.getElementById('title').value;
+    if (title !== '') {
+        document.getElementById('title-error').classList.remove("visible");
+    }
+  })
+
+  document.getElementById('distribution-list').addEventListener('keyup', (event) => {
+    const string = document.getElementById('distribution-list').value;
+    // if (validateString(string)) {
+        document.getElementById('data-error').classList.remove("visible");
+    // }
+  })
 
   document.getElementById("distribution-list").placeholder = returnPlacehoder();
